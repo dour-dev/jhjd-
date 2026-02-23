@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download File</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body{
+        height:100vh;
+        background-image:url("ảnh/avatar_anh_gau_truc_cute_chibi_36_557c1c7623.jpg");
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-family:Arial, sans-serif;
+        position:relative;
+    }
+
+    /* Lớp làm tối nền để chữ rõ */
+    body::after{
+        content:"";
+        position:absolute;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.4);
+        z-index:0;
+    }
+
+    /* Tên góc trái */
+    .brand{
+        position:absolute;
+        top:15px;
+        left:15px;
+        font-size:18px;
+        font-weight:bold;
+        color:white;
+        z-index:2;
+        text-shadow:0 0 5px black;
+    }
+
+    /* Khung chính */
+    .card{
+        position:relative;
+        z-index:1;
+        padding:30px;
+        border-radius:20px;
+        text-align:center;
+        background:rgba(0,0,0,0.6);
+        backdrop-filter:blur(8px);
+    }
+
+    /* Viền cầu vồng */
+    .card::before{
+        content:"";
+        position:absolute;
+        inset:-4px;
+        border-radius:25px;
+        background:linear-gradient(
+            45deg,
+            red,orange,yellow,green,blue,indigo,violet,red
+        );
+        background-size:300% 300%;
+        animation:rainbow 6s linear infinite;
+        z-index:-1;
+    }
+
+    @keyframes rainbow{
+        0%{background-position:0%}
+        100%{background-position:300%}
+    }
+
+    h2{
+        color:white;
+        margin-bottom:20px;
+    }
+
+    button{
+        padding:12px 30px;
+        font-size:16px;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+        font-weight:bold;
+    }
+
+    button:disabled{
+        opacity:0.6;
+        cursor:not-allowed;
+    }
+
+    .status{
+        margin-top:15px;
+        color:white;
+        font-size:15px;
+        min-height:20px;
+    }
+
+    @media(max-width:500px){
+        .card{
+            width:85%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="brand">download game [Wink - NE]</div>
+
+<div class="card">
+    <h2>Tải File</h2>
+    <button id="downloadBtn" onclick="startDownload()">Download</button>
+    <div class="status" id="status"></div>
+</div>
+
+<script>
+function startDownload(){
+    const btn = document.getElementById("downloadBtn");
+    const status = document.getElementById("status");
+
+    let timeLeft = Math.floor(Math.random() * 10) + 1; // 1-10 giây
+    btn.disabled = true;
+
+    status.innerText = "Vui lòng chờ " + timeLeft + " giây...";
+
+    let countdown = setInterval(function(){
+        timeLeft--;
+        if(timeLeft > 0){
+            status.innerText = "Đang tải sau: " + timeLeft + " giây...";
+        } else {
+            clearInterval(countdown);
+            status.innerText = "Đang tải...";
+            window.location.href = "jhjd.apk";
+        }
+    },1000);
+}
+</script>
+
+</body>
+</html>
